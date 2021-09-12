@@ -37,6 +37,8 @@ jobs:
           retry_wait_seconds: 120
           command: |
             export
+      - name: Download the Maxmind files
+        run: ./scripts/mmdb.sh ${{ secrets.MAXMIND_KEY}} geoip/internal/handlers
       - name: Identify GitHub tag name
         # get tag name from runners environment 'GITHUB_REF' and then use bash substring
         # to strip out '+' symbol - required due to gcr not supporting this as a tag
