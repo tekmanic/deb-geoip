@@ -32,6 +32,8 @@ jobs:
           retry_wait_seconds: 120
           command: |
             export
+      - name: Download the Maxmind files
+        run: ./scripts/mmdb.sh ${{ secrets.MAXMIND_KEY}} geoip/internal/handlers
       - name: Build Docker image and tag
         uses: nick-invision/retry@v2.4.0
         with:
