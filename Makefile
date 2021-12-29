@@ -9,7 +9,7 @@ run:
 
 compile:
 	cd geoip && go build main.go
-	if test -d binaries; then mv geoip/main binaries/geoip;	else mkdir binaries && mv geoip/main binaries/geoip; fi
+	if test -d bin; then mv geoip/main bin/geoip;	else mkdir bin && mv geoip/main bin/geoip; fi
 
 test:
 	cd geoip && go test -v ./...
