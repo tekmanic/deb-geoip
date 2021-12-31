@@ -21,3 +21,9 @@ Set up the environment `MAXMIND_KEY` is needed to download the Maxmind database.
 ## Application
 
 By default the app will start on `localhost:3000`.  Beyond the web application, there are two GET endpoints: `/geo/:ip` and `/geomm/:ip`. The first returns the IP-API.com result and the second returns the Maxmind result.
+
+___
+
+If you appreciate my work, then please consider buying me a beer :D
+
+[![PayPal donation](https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/donate?hosted_button_id=KKQ4LNMEDVUPN)
