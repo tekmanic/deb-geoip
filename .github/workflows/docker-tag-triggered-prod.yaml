@@ -9,6 +9,8 @@ jobs:
   gcr-dockerhub-build-publish:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Docker-slim
+        run: curl -sL https://raw.githubusercontent.com/docker-slim/docker-slim/master/scripts/install-dockerslim.sh | sudo -E bash -
       - name: Checkout
         uses: actions/checkout@v2
       - name: Login to Docker Hub

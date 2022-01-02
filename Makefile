@@ -1,8 +1,10 @@
+all: download compile build dockup
+
 build: 
-	docker build -t geoip:latest .
+	docker build -t deb-geoip:latest .
 
 dockup:
-	docker run -d --name geoip -p 3000:3000 geoip:latest
+	docker run -d --name deb-geoip -p 3000:3000 deb-geoip:latest
 
 run:
 	cd geoip && go run main.go
@@ -17,4 +19,9 @@ test:
 download:
 	./scripts/mmdb.sh ${MAXMIND_KEY} geoip/internal/handlers
 
-all: download compile build dockup
+slim:
+	docker-slim build --dockerfile Dockerfile --tag deb-geoip:slim .
+
+clean:
+	docker kill deb-geoip || true
+	docker rm -f deb-geoip
