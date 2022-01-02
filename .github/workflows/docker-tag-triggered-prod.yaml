@@ -75,6 +75,14 @@ jobs:
           retry_wait_seconds: 120
           command: |
             docker images
+      - name: Docker slim the image
+        uses: nick-invision/retry@v2.4.0
+        with:
+          timeout_minutes: 60
+          max_attempts: 3
+          retry_wait_seconds: 120
+          command: |
+            docker-slim build --dockerfile Dockerfile --tag ${{ github.repository }}:slim .
       - name: Push Docker image to Docker Hub
         uses: nick-invision/retry@v2.4.0
         with:
@@ -83,6 +91,7 @@ jobs:
           retry_wait_seconds: 120
           command: |
             docker push ${{ github.repository }}:latest
+            docker push ${{ github.repository }}:slim
             docker push ${{ github.repository }}:${{ steps.identify_tag.outputs.tag }}
       - name: Push Docker image to GitHub Container Registry (GHCR)
         uses: nick-invision/retry@v2.4.0
@@ -92,4 +101,5 @@ jobs:
           retry_wait_seconds: 120
           command: |
             docker push ghcr.io/${{ github.repository }}:latest
+            docker push ghcr.io/${{ github.repository }}:slim
             docker push ghcr.io/${{ github.repository }}:${{ steps.identify_tag.outputs.tag }}

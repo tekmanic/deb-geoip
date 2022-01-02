@@ -1,7 +1,7 @@
 # deb-geoip
 
 Golang GeoIP REST API using Fiber, Maxmind, IP-API.com built on Debian Buster Slim. This leverages the example Fiber geoip apps but packages them
-into a docker image.
+into a docker image. Docker-slim is also used to get the smallest image possible, 86MB uncompressed.
 
 ## Installation
 
@@ -10,7 +10,8 @@ Set up the environment `MAXMIND_KEY` is needed to download the Maxmind database.
 - Run `export MAXMIND_KEY=<your_key>`
 - Run the download script to pull in the mmdb files `make download`
 - Run `make build` to build the docker image
-- Run `make dockup` to run the docker image
+- Run `make slim` to build the slim image
+- Run `make dockup` to run the slim docker image
 - Run `make test` to run the tests
 - Run `make run` to run the app
 

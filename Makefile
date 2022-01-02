@@ -1,10 +1,10 @@
-all: download compile build dockup
+all: download compile build slim dockup
 
 build: 
 	docker build -t deb-geoip:latest .
 
 dockup:
-	docker run -d --name deb-geoip -p 3000:3000 deb-geoip:latest
+	docker run -d --name deb-geoip -p 3000:3000 deb-geoip:slim
 
 run:
 	cd geoip && go run main.go
